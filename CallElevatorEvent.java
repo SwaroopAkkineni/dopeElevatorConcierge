@@ -1,9 +1,13 @@
 public class CallElevatorEvent implements ElevatorEvent {
 	static int floor;
-	static boolean direction; // true is up, false is down
+	static ElevatorDirection direction; // true is up, false is down
 
 	public CallElevatorEvent(int floor, boolean direction) {
 		this.floor = floor;
-		this.direction = direction;
+
+    if(direction)
+		  this.direction = ElevatorDirection.UP;
+    else
+      this.direction = ElevatorDirection.DOWN;
 	}
 }

@@ -19,7 +19,9 @@ public class Elevator {
 	public Elevator(int maxFloor) {
 		this.maxFloor = maxFloor;
 		this.floor = 0;
-		direction = ElevatorDirection.UP;
+		direction = ElevatorDirection.IDLE;
+		this.currentPath = new HashSet<>();
+		this.nextPath = new HashSet<>();
 	}
 
   public void handleElevatorEvent(ElevatorEvent elevatorEvent) {
@@ -32,10 +34,35 @@ public class Elevator {
 
 	private void handleCallElevatorEvent(CallElevatorEvent event) {
 		System.out.println("CallElevatorEvent");
+
+		if(direction == ElevatorDirection.IDLE) {
+			handleIdle(event.floor);
+		} else if(event.direction != this.direction) {
+			nextPath.add(event.floor);
+		} else {
+			currentPath.add(event.floor);
+		}
 	}
 
 	private void handlePressFloorEvent(PressFloorEvent event) {
 		System.out.println("PressFloorEvent");
+
+		if(direction == ElevatorDirection.IDLE) {
+			handleIdle(event.floor);
+		} else if(event.floor > this.floor) {
+			currentPath.add(event.floor);
+		} else {
+			nextPath.add(event.floor);
+		}
+	}
+
+	private void handleIdle(int floor) {
+		currentPath.add(floor);
+
+		if(floor > this.floor)
+			direction = ElevatorDirection.UP;
+		else
+			direction = ElevatorDirection.DOWN;
 	}
 
 	public void traverse() {
@@ -50,7 +77,13 @@ public class Elevator {
 					// do noth
 		}
 
-		if()
+		if(currentPath.contains(this.floor))
+			currentPath.remove(this.floor);
+
+		if(currentPath.isEmpty())
+			this.direction = ElevatorDirection.IDLE;
+
+
 		print();
 	}
 
@@ -67,10 +100,4 @@ public class Elevator {
   private void print() {
     System.out.println(this.floor + " " + this.direction);
   }
-}
-
-enum ElevatorDirection {
-	UP,
-	IDLE,
-	DOWN
 }
