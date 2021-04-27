@@ -16,28 +16,36 @@ public class SwaroopsAmazingElevatorConcierge {
 		// for(int i = 0; i < 20; i++) {
 		// 	elevator.traverse();
 		// }
-
 		Elevator elevator = new Elevator(10);
 		elevator.handleElevatorEvent(new CallElevatorEvent(10, false));
-		for(int i = 0; i < 10; i++) {
+		for(int i = 0; i < 5; i++) {
+			elevator.traverse();
+		}
+		elevator.handleElevatorEvent(new CallElevatorEvent(4, false));
+		for(int i = 0; i < 1; i++) {
+			elevator.traverse();
+		}
+		elevator.handleElevatorEvent(new CallElevatorEvent(8, true));
+		for(int i = 0; i < 2; i++) {
 			elevator.traverse();
 		}
 
 		elevator.handleElevatorEvent(new PressFloorEvent(5));
-		for(int i = 0; i < 10; i++) {
+		for(int i = 0; i < 20; i++) {
 			elevator.traverse();
 		}
+
 		System.out.println("----------------------------------");
 
-		elevator = new Elevator(10, 7);
-		elevator.handleElevatorEvent(new CallElevatorEvent(5, false));
-		for(int i = 0; i < 10; i++) {
-			elevator.traverse();
-		}
-
-		elevator.handleElevatorEvent(new PressFloorEvent(8));
-		for(int i = 0; i < 10; i++) {
-			elevator.traverse();
-		}
+		// elevator = new Elevator(10, 7);
+		// elevator.handleElevatorEvent(new CallElevatorEvent(5, false));
+		// for(int i = 0; i < 10; i++) {
+		// 	elevator.traverse();
+		// }
+		//
+		// elevator.handleElevatorEvent(new PressFloorEvent(8));
+		// for(int i = 0; i < 10; i++) {
+		// 	elevator.traverse();
+		// }
   }
 }

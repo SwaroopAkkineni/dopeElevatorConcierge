@@ -74,15 +74,23 @@ public class Elevator {
 						decrement();
 						break;
 				default:
-					// do noth
+					// do nothing
 		}
 
-		if(currentPath.contains(this.floor))
+		if(currentPath.contains(this.floor)) {
+			System.out.println("-------------------- dropoff");
 			currentPath.remove(this.floor);
+		}
 
-		if(currentPath.isEmpty())
-			this.direction = ElevatorDirection.IDLE;
-
+		if(currentPath.isEmpty()) {
+			if(nextPath.isEmpty()) {
+				this.direction = ElevatorDirection.IDLE;
+			} else {
+				flipDirection();
+				currentPath = nextPath;
+				nextPath = new HashSet<>();
+			}
+		}
 
 		print();
 	}
@@ -95,6 +103,13 @@ public class Elevator {
 	public void increment() {
 		if(this.floor < this.maxFloor)
 			this.floor++;
+	}
+
+	private void flipDirection() {
+		if(this.direction.equals(ElevatorDirection.UP))
+			this.direction = ElevatorDirection.DOWN;
+		else
+			this.direction = ElevatorDirection.UP;
 	}
 
   private void print() {
