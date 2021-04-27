@@ -1,19 +1,25 @@
+import java.util.Set;
+import java.util.HashSet;
+
 public class Elevator {
 	int maxFloor;
 	int floor;
 	ElevatorDirection direction;
-	// Set<Integer>
+	Set<Integer> currentPath;
+	Set<Integer> nextPath;
 
 	public Elevator(int maxFloor, int startingFloor) {
 		this.maxFloor = maxFloor;
 		this.floor = startingFloor;
-		direction = ElevatorDirection.IDLE;
+		this.direction = ElevatorDirection.IDLE;
+		this.currentPath = new HashSet<>();
+		this.nextPath = new HashSet<>();
 	}
 
 	public Elevator(int maxFloor) {
 		this.maxFloor = maxFloor;
 		this.floor = 0;
-		direction = ElevatorDirection.IDLE;
+		direction = ElevatorDirection.UP;
 	}
 
   public void handleElevatorEvent(ElevatorEvent elevatorEvent) {
@@ -32,21 +38,33 @@ public class Elevator {
 		System.out.println("PressFloorEvent");
 	}
 
+	public void traverse() {
+		switch (this.direction) {
+				case UP:
+						increment();
+						break;
+				case DOWN:
+						decrement();
+						break;
+				default:
+					// do noth
+		}
+
+		if()
+		print();
+	}
+
 	public void decrement() {
 		if(this.floor > 0)
 			this.floor--;
-
-		print();
 	}
 
 	public void increment() {
 		if(this.floor < this.maxFloor)
 			this.floor++;
-
-		print();
 	}
 
-  public void print() {
+  private void print() {
     System.out.println(this.floor + " " + this.direction);
   }
 }
