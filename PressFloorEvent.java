@@ -1,7 +1,7 @@
 public class PressFloorEvent implements ElevatorEvent {
-	static int floor;
+  static int floor;
 
-	public PressFloorEvent(int floor) {
-		this.floor = floor;
-	}
+  public PressFloorEvent(int floor) {
+    this.floor = floor;
+  }
 }

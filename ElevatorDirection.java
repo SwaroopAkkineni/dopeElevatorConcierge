@@ -1,5 +1,5 @@
 enum ElevatorDirection {
-	UP,
-	IDLE,
-	DOWN
+  UP,
+  IDLE,
+  DOWN
 }

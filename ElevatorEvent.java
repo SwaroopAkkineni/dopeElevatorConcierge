@@ -1,1 +1,1 @@
-public interface ElevatorEvent{}
+public interface ElevatorEvent {}
