@@ -14,6 +14,8 @@ public class Elevator {
 		this.direction = ElevatorDirection.IDLE;
 		this.currentPath = new HashSet<>();
 		this.nextPath = new HashSet<>();
+
+		print();
 	}
 
 	public Elevator(int maxFloor) {
@@ -22,6 +24,8 @@ public class Elevator {
 		direction = ElevatorDirection.IDLE;
 		this.currentPath = new HashSet<>();
 		this.nextPath = new HashSet<>();
+
+		print();
 	}
 
   public void handleElevatorEvent(ElevatorEvent elevatorEvent) {
@@ -76,6 +80,7 @@ public class Elevator {
 				default:
 					// do nothing
 		}
+		print();
 
 		if(currentPath.contains(this.floor)) {
 			System.out.println("-------------------- dropoff");
@@ -91,8 +96,6 @@ public class Elevator {
 				nextPath = new HashSet<>();
 			}
 		}
-
-		print();
 	}
 
 	public void decrement() {
